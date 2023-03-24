@@ -17,16 +17,13 @@ type Title = String
 
 html_ :: Title -> Structure -> Html
 html_ title content = 
-  Html 
-    ( el "html"
-       ( el "head" (el "title" title)
+  Html $ 
+    el "html" $
+      el "head" (el "title" title)
        <> el "body" (getStructureString content)
-       )
-    )
 
 getStructureString :: Structure -> String
-getStructureString content = case content of 
-    Structure str -> str  
+getStructureString (Structure str) = str  
 
 el :: String -> String -> String
 el tag content = "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
