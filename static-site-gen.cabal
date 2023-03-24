@@ -47,3 +47,15 @@ executable static-site-gen
 
     hs-source-dirs:   app
     default-language: Haskell2010
+
+test-suite static-site-gen-test
+	type: exitcode-stdio-1.0
+	main-is: Tests.hs
+	hs-source-dir: test
+	build-depends:
+		base ^>=4.16.4.0,
+		QuickCheck >= 2.14,
+		static-site-gen
+
+	default-language: Haskell2010
+
