@@ -50,12 +50,13 @@ executable static-site-gen
 
 test-suite static-site-gen-test
 	type: exitcode-stdio-1.0
-	main-is: Tests.hs
+	main-is: Spec.hs
 	hs-source-dir: test
 	build-depends:
 		base ^>=4.16.4.0,
 		QuickCheck >= 2.14,
+		hspec,
 		static-site-gen
-
+	ghc-options: -Wall
 	default-language: Haskell2010
 
