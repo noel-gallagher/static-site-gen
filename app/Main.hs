@@ -1,6 +1,7 @@
 import Html
 main :: IO ()
-main = putStrLn (render myPage)
+main = do 
+    putStrLn (render myPage)
 
 myPage :: Html
 myPage =

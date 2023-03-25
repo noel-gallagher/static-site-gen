@@ -8,7 +8,7 @@ prop_p content =
     paragraph = p_ content
     expected = "<p>" <> content <> "</p>"
   in
-     show paragraph == expected
+     getStructureString paragraph == expected
 
 prop_h1 :: Title -> Bool
 prop_h1 title = 
@@ -16,7 +16,7 @@ prop_h1 title =
     header = h1_ title 
     expected = "<h1>" <> title <> "</h1>" 
   in
-    show header == expected 
+    getStructureString header == expected 
 
 main :: IO ()
 main = hspec $ do 

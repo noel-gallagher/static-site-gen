@@ -7,11 +7,12 @@ module Html
 , h1_
 , append_
 , render
+, getStructureString
 ) where
 
 newtype Html = Html String
 
-newtype Structure = Structure String deriving Show
+newtype Structure = Structure String
 
 type Title = String
 
