@@ -9,6 +9,7 @@ module Html
 , render
 , getStructureString
 ) where
+import Text.Read (Lexeme(String))
 
 newtype Html = Html String
 
@@ -37,6 +38,20 @@ h1_ = Structure . el "h1"
 
 append_ :: Structure -> Structure -> Structure
 append_ (Structure first) (Structure second) = Structure (first <> second)
+
+escape :: String -> String
+escape = 
+  let
+    escapeChar c = 
+      case c of
+        '<' -> "&lt"
+        '>' -> "&gt"
+        '&' -> "&amp"
+        '"' -> "&quot"
+        '\'' -> "&#39"
+        _ -> [c]
+  in
+    concat . map escapeChar
 
 render :: Html -> String
 render (Html content) = content 
