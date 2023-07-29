@@ -4,6 +4,9 @@ module Html
 , Structure
 , html_
 , p_
+, ul_
+, ol_
+, codeBlock_
 , h1_
 , append_
 , render
