@@ -10,8 +10,11 @@ myPage =
         content = append_
             (h1_ "Hello")
             (append_
-                (p_ "Welcome to")
-                (p_ "my page")
+                (append_
+                    (p_ "Welcome to")
+                    (p_ "my page")
+                )
+                (p_ "<html></html>")
             )
     in html_ title content
 
