@@ -13,4 +13,4 @@ data Structure
   | Paragraph String
   | UnorderedList [String]
   | OrderedList [String]
-  | Codelock [String]
+  | Codeblock [String]

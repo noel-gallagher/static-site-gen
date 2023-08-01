@@ -11,6 +11,7 @@ module Html
 , append_
 , render
 , getStructureString
+, escape
 ) where
 import Text.Read (Lexeme(String))
 
@@ -65,7 +66,7 @@ escape =
         '\'' -> "&#39"
         _ -> [c]
   in
-    concat . map escapeChar
+    concatMap escapeChar
 
 render :: Html -> String
 render (Html content) = content 

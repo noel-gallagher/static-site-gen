@@ -18,6 +18,11 @@ prop_h1 title =
   in
     getStructureString header == expected 
 
+testEscapeChar :: (String, String) -> SpecWith ()
+testEscapeChar (input, expected) =
+  it ("correctly escapes the character " ++ input) $ 
+   escape input `shouldBe` expected 
+
 main :: IO ()
 main = hspec $ do 
   describe "html gen" $ do
@@ -25,3 +30,11 @@ main = hspec $ do
      property $ \str -> prop_p str `shouldBe` True
     it "should wrap h1" $ do
       property $ \str -> prop_h1 str `shouldBe` True
+    
+    let escapeChars = [("<", "&lt"),
+                        (">", "&gt"),
+                        ("\"", "&quot"),
+                        ("\'", "&#39")]
+    mapM_ testEscapeChar escapeChars 
+
+
