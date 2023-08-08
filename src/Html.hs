@@ -8,7 +8,6 @@ module Html
 , ol_
 , codeBlock_
 , h1_
-, append_
 , render
 , getStructureString
 , escape
@@ -18,6 +17,9 @@ import Text.Read (Lexeme(String))
 newtype Html = Html String
 
 newtype Structure = Structure String
+instance Semigroup Structure where
+  (<>) c1 c2 = 
+    Structure (getStructureString c1 <> getStructureString c2)
 
 type Title = String
 
@@ -50,9 +52,6 @@ ol_ = Structure . el "ol" . concatMap (el "li" . getStructureString)
 
 codeBlock_ :: String -> Structure
 codeBlock_ = Structure . el "pre" . escape
-
-append_ :: Structure -> Structure -> Structure
-append_ (Structure first) (Structure second) = Structure (first <> second)
 
 escape :: String -> String
 escape = 
