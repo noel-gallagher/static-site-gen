@@ -10,14 +10,14 @@ extra-source-files: CHANGELOG.md
 library
     exposed-modules:  Html,
 					  Markup
-    build-depends:    base ^>=4.16.4.0
+    build-depends:    base >=4.16.4.0
     hs-source-dirs:   src
     default-language: Haskell2010
 
 executable static-site-gen
     main-is:          Main.hs
     build-depends:
-        base ^>=4.16.4.0,
+        base >=4.16.4.0,
         static-site-gen
 
     hs-source-dirs:   app
@@ -28,7 +28,7 @@ test-suite static-site-gen-test
 	main-is: Spec.hs
 	hs-source-dir: test
 	build-depends:
-		base ^>=4.16.4.0,
+		base >=4.16.4.0,
 		QuickCheck >= 2.14,
 		hspec,
 		static-site-gen
