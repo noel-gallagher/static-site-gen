@@ -2,6 +2,12 @@ import Test.QuickCheck
 import Test.Hspec
 import Html
 
+specialCharsToExclude :: [Char]
+specialCharsToExclude = "<>&\"\'"
+
+stringWithoutConverted :: Gen String
+stringWithoutConverted = listOf $ elements $ filter (`notElem` specialCharsToExclude) [' ' .. '-']
+
 prop_p :: String -> Bool
 prop_p content =
   let
@@ -13,7 +19,7 @@ prop_p content =
 prop_h1 :: Title -> Bool
 prop_h1 title = 
   let
-    header = h1_ title 
+    header = h_ 1 title 
     expected = "<h1>" <> title <> "</h1>" 
   in
     getStructureString header == expected 
@@ -27,14 +33,15 @@ main :: IO ()
 main = hspec $ do 
   describe "html gen" $ do
     it "should wrap paragraphs" $ do
-     property $ \str -> prop_p str `shouldBe` True
+      property $ forAll stringWithoutConverted $ \str -> prop_p str `shouldBe` True
     it "should wrap h1" $ do
-      property $ \str -> prop_h1 str `shouldBe` True
+      property $ forAll stringWithoutConverted $ \str -> prop_h1 str `shouldBe` True
     
     let escapeChars = [("<", "&lt"),
                         (">", "&gt"),
                         ("\"", "&quot"),
-                        ("\'", "&#39")]
+                        ("\'", "&#39"),
+                        ("&", "&amp")]
     mapM_ testEscapeChar escapeChars 
 
 
