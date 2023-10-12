@@ -34,6 +34,7 @@ main = hspec $ do
   describe "html gen" $ do
     it "should wrap paragraphs" $ do
       property $ forAll stringWithoutConverted $ \str -> prop_p str `shouldBe` True
+
     it "should wrap h1" $ do
       property $ forAll stringWithoutConverted $ \str -> prop_h1 str `shouldBe` True
     

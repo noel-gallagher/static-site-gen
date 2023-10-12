@@ -1,23 +1,18 @@
 module Convert where
 
 import qualified Markup
-import qualified Html.Internal as HI
+import qualified Html 
 
 convertStructure :: Markup.Structure -> Html.Structure
 convertStructure structure =
-  Markup.Heading n txt ->
-    Html.h n txt
+  case structure of
+    Markup.Heading n txt ->
+      Html.h_ n txt
   
-  Markup.Paragraph p ->
-    Html.p_ p
-  
-  Markup.UnorderedList struct ->
-    Html.ul_ convertStructure struct 
-
-  Markup.OrderedList struct ->
-    Html.ol_ struct
-
-  Markup.Codeblock code ->
-    Html.codeBlock_ code
+    Markup.Paragraph p ->
+      Html.p_ p
+    
+    -- fixme either[E, A] 
+    _ -> Html.p_ ""
  
   
