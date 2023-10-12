@@ -8,7 +8,7 @@ myPage =
     let
         title = "my page"
         content = 
-            h1_ "Hello" <>
+            h_ 1 "Hello" <>
                 p_ "Welcome to"<>
                 p_ "my page" <>
                 p_ "<html></html>"

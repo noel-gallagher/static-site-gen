@@ -7,12 +7,13 @@ module Html
 , ul_
 , ol_
 , codeBlock_
-, h1_
+, h_
 , render
 , getStructureString
 , escape
 ) where
 import Text.Read (Lexeme(String))
+import Numeric.Natural
 
 newtype Html = Html String
 
@@ -39,8 +40,8 @@ el tag content = "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
 p_ :: String -> Structure
 p_ = Structure . el "p" . escape
 
-h1_ :: String ->Structure
-h1_ = Structure . el "h1" . escape
+h_ :: Natural -> String -> Structure
+h_ n = Structure . el ("h" <> show n) . escape
 
 ul_ :: [Structure] -> Structure 
 ul_ = Structure . 
