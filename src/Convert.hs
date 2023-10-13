@@ -12,6 +12,15 @@ convertStructure structure =
     Markup.Paragraph p ->
       Html.p_ p
     
+    Markup.UnorderedList li ->
+      Html.ol_ $ map Html.p_ li  
+    
+    Markup.OrderedList li ->
+      Html.ol_ $ map Html.p_ li
+    
+    Markup.Codeblock cb ->
+      Html.codeBlock_ (unlines cb)
+     
     -- fixme either[E, A] 
     _ -> Html.p_ ""
  
