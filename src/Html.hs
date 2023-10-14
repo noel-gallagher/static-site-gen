@@ -22,6 +22,9 @@ instance Semigroup Structure where
   (<>) c1 c2 = 
     Structure (getStructureString c1 <> getStructureString c2)
 
+instance Monoid Structure where
+  mempty = Structure ""
+
 type Title = String
 
 html_ :: Title -> Structure -> Html
