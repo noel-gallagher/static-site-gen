@@ -2,7 +2,8 @@
 build: `cabal build`
 
 # Run
-`cabal run static-site-gen`
+## Pass input file:
+`cabal run static-site-gen -- example.md output.html`
 
 # Test
 `cabal test`
