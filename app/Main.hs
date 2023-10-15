@@ -1,16 +1,25 @@
 import Html
+import Markup
+import Convert (convert)
+
+import System.Directory (doesFileExist)
+import System.Environment (getArgs)
+
+process :: Title -> String -> String
+process title = Html.render . convert title . Markup.parse
+
 main :: IO ()
 main = do 
-    putStrLn (render myPage)
+    args <- getArgs
+    case args of
 
-myPage :: Html
-myPage =
-    let
-        title = "my page"
-        content = 
-            h_ 1 "Hello" <>
-                p_ "Welcome to"<>
-                p_ "my page" <>
-                p_ "<html></html>"
-    in html_ title content
+        [] -> do
+            content <- getContents
+            putStrLn (process "Empty title" content)
+
+        [input, output] -> do
+            content <- readFile input -- inputfile will be the title 
+            writeFile output (process input content)
+
+        _ -> putStrLn "Invalid. usage: input output"
 
