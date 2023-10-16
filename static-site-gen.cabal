@@ -11,14 +11,14 @@ library
     exposed-modules:  Html,
 		      Markup,
 		      Convert
-    build-depends:    base >=4.16.4.0
+    build-depends:    base >=4.14.3.0
     hs-source-dirs:   src
     default-language: Haskell2010
 
 executable static-site-gen
     main-is:          Main.hs
     build-depends:
-        base >=4.16.4.0,
+        base >=4.14.3.0,
         directory >= 1.3.7.1,
         static-site-gen
 
@@ -30,7 +30,8 @@ test-suite static-site-gen-test
 	main-is: Spec.hs
 	hs-source-dir: test
 	build-depends:
-		base >=4.16.4.0,
+        base >=4.14.3.0,
+        directory >= 1.3.7.1,
 		QuickCheck >= 2.14,
 		hspec,
 		static-site-gen
