@@ -14,9 +14,6 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v2
 
-    - name: build image
-      run: docker build -t static-site-gen .
-
-    - name: run tests 
-      run: docker run static-site-gen cabal test
+    - name: build and test 
+      run: ./bin/test.sh
 
