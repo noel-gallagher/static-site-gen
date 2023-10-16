@@ -1,0 +1,22 @@
+name: static site gen CI
+
+on:
+  push:
+    branches:
+      - main 
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v2
+
+    - name: build image
+      run: docker build -t static-site-gen .
+
+    - name: run tests 
+      run: docker run static-site-gen cabal test
+
