@@ -16,6 +16,7 @@ import Text.Read (Lexeme(String))
 import Numeric.Natural
 
 newtype Html = Html String
+newtype Content = Content String
 
 newtype Structure = Structure String
 instance Semigroup Structure where
